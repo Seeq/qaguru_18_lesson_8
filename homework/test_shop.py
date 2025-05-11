@@ -2,6 +2,7 @@
 Протестируйте классы из модуля homework/models.py
 """
 import pytest
+
 from homework.models import Product, Cart
 
 
@@ -9,9 +10,11 @@ from homework.models import Product, Cart
 def product_book():
     return Product("book", 100, "This is a book", 1000)
 
+
 @pytest.fixture
 def product_postcard():
     return Product("postcard", 10, "This is a postcard", 1000)
+
 
 @pytest.fixture
 def cart():
@@ -88,7 +91,7 @@ class TestCart:
         cart.add_product(product_postcard, quantity_of_purchased_goods)
         assert cart.get_total_price() == total_price
 
-    def test_get_total_price_from_empty_cart(self, cart, first_product):
+    def test_get_total_price_from_empty_cart(self, cart, product_book):
         assert cart.get_total_price() == 0
 
     def test_buy(self, cart, product_book, product_postcard):
